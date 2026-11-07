@@ -1,7 +1,18 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# =====================================
+# FRONTEND - EXPO / REACT NATIVE / TS
+# =====================================
 
-# dependencies
+# Dependencies
 node_modules/
+
+# Yarn 4
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Expo
 .expo/
@@ -9,33 +20,49 @@ dist/
 web-build/
 expo-env.d.ts
 
-# Native
+# Native generated folders (Expo CNG)
+/android/
+/ios/
+
+# Native build files and credentials
 .kotlin/
 *.orig.*
 *.jks
+*.keystore
 *.p8
 *.p12
 *.key
+*.pem
 *.mobileprovision
 
 # Metro
 .metro-health-check*
 
-# debug
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
 npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
+# Tests
+coverage/
+
+# Operating systems
 .DS_Store
-*.pem
+Thumbs.db
 
-# local env files
-.env*.local
+# IDE
+.idea/
+.vscode/*.log
 
-# typescript
-*.tsbuildinfo
-
-# generated native folders
-/ios
-/android
+# Temporary files
+*.tmp
+*.temp
