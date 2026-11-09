@@ -1,20 +1,55 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
 
-export default function App() {
+import { Provider } from "react-redux";
+
+import { PersistGate } from "redux-persist/integration/react";
+
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import { store, persistor } from "./src/store/store";
+
+import RootNavigator from "./src/navigation/RootNavigator";
+
+import { colors } from "./src/theme/colors";
+
+function LoadingScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app! youyou</Text>
-      <StatusBar style="auto" />
+    <View style={styles.loading}>
+      <ActivityIndicator
+        size="large"
+        color={colors.primary}
+      />
     </View>
   );
 }
 
+export default function App() {
+  return (
+    <Provider store={store}>
+      <PersistGate
+        loading={<LoadingScreen />}
+        persistor={persistor}
+      >
+        <SafeAreaProvider>
+          <StatusBar barStyle="dark-content" />
+
+          <RootNavigator />
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: {
+  loading: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.background,
   },
 });
